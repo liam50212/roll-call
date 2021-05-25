@@ -15,29 +15,28 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">上課地點</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <select class="form-control" name="place_id" id="place_id" required>
+                                    <option value="" hidden>請選擇教育單位</option>
+                                    <template x-for="place in places" :key="place">
+                                        <option :value="place['id']" x-text="place['name']"></option>
+                                    </template>
+                                    
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">班級</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <select class="form-control" name="classroom_id" id="classroom_id" required>
+                                    <option value="" hidden>請選擇班級</option>
+                                    @foreach ($places as $place)
+                                        <option value="{{$place->id}}">{{$place->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">姓名</label>
@@ -116,4 +115,15 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+<script>
+    function data() {
+        return {
+            'places'
+        }
+    }
+</script>
 @endsection
