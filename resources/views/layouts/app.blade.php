@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+   
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -33,7 +33,32 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <?php 
+                            $role =  Auth::user()->role ?? null;   
+                        ?>
+                        @if ($role =="admin")
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/place">教育單位管理</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    教育單位管理
+                                </a>
 
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}">教育單位列表</a>
+                                </div>
+                            </li>
+                        @elseif ($role =="school")
+                            456
+                        @elseif ($role =="student")
+                            789
+                        @else
+                        @endif
+
+
+
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,7 +99,12 @@
 
         <main class="py-4">
             @yield('content')
+            @yield('main')
         </main>
+
     </div>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('js')
 </body>
 </html>

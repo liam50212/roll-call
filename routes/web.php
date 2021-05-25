@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function (){
+
+    // 數位方塊
+    Route::prefix('admin')->group(function ()
+    {
+        Route::get('/', 'AdminController@index');
+        Route::prefix('place')->group(function () {
+            Route::get('/', 'PlaceController@index');
+            Route::get('/create', 'PlaceController@create');
+            Route::post('/store', 'PlaceController@store');
+            Route::get('/edit/{id}', 'PlaceController@edit');
+            Route::post('/update/{id}', 'PlaceController@update');
+            Route::post('/delete/{id}', 'PlaceController@delete');
+        });
+        
+    });
+
+
+    // 教育單位
+
+    // 學員
+
+});
