@@ -35,6 +35,15 @@ Route::middleware('auth')->group(function (){
             Route::post('/update/{id}', 'PlaceController@update');
             Route::post('/delete/{id}', 'PlaceController@delete');
         });
+
+        Route::prefix('classroom')->group(function () {
+            Route::get('/', 'ClassroomController@index');
+            Route::get('/create', 'ClassroomController@create');
+            Route::post('/store', 'ClassroomController@store');
+            Route::get('/edit/{id}', 'ClassroomController@edit');
+            Route::post('/update/{id}', 'ClassroomController@update');
+            Route::post('/delete/{id}', 'ClassroomController@delete');
+        });
         
     });
 

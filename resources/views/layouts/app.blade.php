@@ -40,6 +40,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/place">教育單位管理</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/classroom">班級管理</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     教育單位管理
